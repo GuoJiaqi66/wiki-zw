@@ -5,11 +5,11 @@
   "scripts": {
     "serve-dev": "vue-cli-service serve --mode dev --port 8088",
     "serve-prod": "vue-cli-service serve --mode prod",
-    "build-dev": "vue-cli-service build --mode dev",
     "build-dev": "vue-cli-service build --mode prod",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "ant-design-vue": "^2.2.8",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
