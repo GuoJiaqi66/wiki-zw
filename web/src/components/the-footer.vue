@@ -1,6 +1,6 @@
 <template>
-    <a-layout-footer>
-        <h1>the footer</h1>
+    <a-layout-footer style="text-align: center">
+        Ant Design ©2018 Created by Ant UED
     </a-layout-footer>
 
 </template>

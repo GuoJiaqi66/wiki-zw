@@ -1,14 +1,12 @@
 <template>
   <div id="nav">
-    <a-layout>
-        <TheHeader />
+      <a-layout-header class="header">
+          <TheHeader />
 
-        <router-view/>
+          <router-view/>
 
-        <TheFooter />
-    </a-layout>
-
-
+          <TheFooter />
+      </a-layout-header>
 
   </div>
 </template>
