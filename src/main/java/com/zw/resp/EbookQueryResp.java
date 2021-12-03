@@ -1,6 +1,6 @@
-package com.zw.domain;
+package com.zw.resp;
 
-public class Ebook {
+public class EbookQueryResp {
     private Long id;
 
     private String name;
