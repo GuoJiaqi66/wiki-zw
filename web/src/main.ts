@@ -8,6 +8,7 @@ import axios from "axios";
 axios.defaults.baseURL = process.env.VUE_APP_SERVER;
 
 // ant design vue
+// @ts-ignore
 import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/antd.css';
 // icon图标
