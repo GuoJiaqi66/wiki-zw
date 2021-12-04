@@ -40,6 +40,17 @@
                 total: 0
             })
 
+            const columns =[
+                {
+                    name: '名称',
+                    dataIndex: 'name',
+                },
+                {
+                    name: '封面',
+                    dataIndex: 'name',
+                },
+            ]
+
 
             const ebooks = ref()
             ebooks.value = []
@@ -86,7 +97,6 @@
                 pagination,
                 ebooks,
                 handleQuery,
-                columns
             }
         }
     }

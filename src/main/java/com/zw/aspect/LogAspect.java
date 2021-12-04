@@ -37,7 +37,7 @@ public class LogAspect {
     private final static Logger LOG = LoggerFactory.getLogger(LogAspect.class);
 
     /** 定义一个切点 */
-    @Pointcut("execution(public * com.zw.*.controller..*Controller.*(..))")
+    @Pointcut("execution(public * com.*.controller..*Controller.*(..))")
     public void controllerPointcut() {}
 
     // 流水号唯一值

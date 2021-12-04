@@ -21,7 +21,6 @@ import java.util.List;
 
 @Service
 public class EbookService {
-    private static final Logger LOG = LoggerFactory.getLogger(EbookService.class);
 
     @Resource
     private EbookMapper ebookMapper;
@@ -30,6 +29,9 @@ public class EbookService {
     private SnowFlake snowFlake;
 
     public PageResp<EbookQueryResp> list(EbookQueryReq req) {
+
+        final Logger LOG = LoggerFactory.getLogger(EbookService.class);
+
         EbookExample ebookExample = new EbookExample();
         EbookExample.Criteria criteria = ebookExample.createCriteria();
         if (!ObjectUtils.isEmpty(req.getName())) {

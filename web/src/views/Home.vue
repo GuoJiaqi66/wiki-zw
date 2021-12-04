@@ -45,21 +45,95 @@
         </a-sub-menu>
       </a-menu>
     </a-layout-sider>
+
+
     <a-layout-content
             :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
     >
-      Content
+
+
+
+      <a-list item-layout="vertical" size="large" :grid="{ gutter: 20, column: 3 }" :pagination="pagination" :data-source="ebooks">
+        <template #renderItem="{ item }">
+          <a-list-item key="item.name">
+            <template #actions>
+              <span>
+                <!-- 小图标 例:收藏数图标-->
+                <component v-bind:is="'FileOutlined'" style="margin-right: 8px" />
+                {{ item.docCount }}
+              </span>
+              <span>
+                <component v-bind:is="'UserOutlined'" style="margin-right: 8px" />
+                {{ item.viewCount }}
+              </span>
+              <span>
+                <component v-bind:is="'LikeOutlined'" style="margin-right: 8px" />
+                {{ item.voteCount }}
+              </span>
+            </template>
+            <a-list-item-meta :description="item.description">
+              <template #title>
+                <router-link :to="'/doc?ebookId=' + item.id">
+                  {{ item.name }}
+                </router-link>
+              </template>
+              <!-- 封面 -->
+              <template #avatar><a-avatar :src="item.cover"/></template>
+            </a-list-item-meta>
+          </a-list-item>
+        </template>
+      </a-list>
+
+
+
+
+
     </a-layout-content>
   </a-layout>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref, onMounted, createVNode } from 'vue';
+import axios from "axios";
 
 export default defineComponent({
   name: 'Home',
   components: {
 
+  },
+  setup() {
+
+    const ebooks = ref();
+    ebooks.value = []
+
+    const handleQueryEbook = () => {
+      axios.get("/ebook/list", {
+        params: {
+          page: 1,
+          size: 1000,
+        }
+      }).then((response) => {
+        const data = response.data;
+        ebooks.value = data.content.list;
+        console.log("ebooks");
+        console.log(ebooks);
+        // ebooks1.books = data.content;
+      });
+    };
+
+    onMounted(() => {
+      handleQueryEbook()
+      console.log("onMounted");
+    });
+
+    createVNode(() => {
+      handleQueryEbook()
+    })
+
+    return {
+      ebooks,
+      handleQueryEbook
+    };
   },
 });
 </script>
