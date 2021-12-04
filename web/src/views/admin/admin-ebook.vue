@@ -1,7 +1,7 @@
 <template>
     <a-layout>
-        <a-layout-content style="padding: 0 50px">
-            <p>
+        <a-layout-content style="margin-top: 10px; margin-bottom: -80px">
+            <p style="margin-top: 10px">
             <a-form
                     layout="inline"
                     :model="param"
@@ -17,6 +17,24 @@
                 </a-form-item>
             </a-form>
             </p>
+
+            <a-table
+                    :columns="columns"
+                    :row-key="record => record.id"
+                    :data-source="ebooks"
+                    :pagination="pagination"
+                    :loading="loading"
+                    @change="handleTableChange"
+            >
+                <template #cover="{ text: cover }">
+                    <img :src="cover" alt="">
+                </template>
+                <template v-slot:category="{ text, record }">
+                    <span> {{}} </span>
+                </template>
+
+
+            </a-table>
 
         </a-layout-content>
     </a-layout>
@@ -42,13 +60,35 @@
 
             const columns =[
                 {
-                    name: '名称',
+                    title: '封面',
+                    dataIndex: 'cover',
+                    slots: { customRender: 'cover' }
+                },
+                {
+                    title: '名称',
                     dataIndex: 'name',
                 },
                 {
-                    name: '封面',
-                    dataIndex: 'name',
+                    title: '分类',
+                    slots: { customRender: 'category' }
                 },
+                {
+                    title: '文档数',
+                    dataIndex: 'docCount'
+                },
+                {
+                    title: '阅读数',
+                    dataIndex: 'viewCount'
+                },
+                {
+                    title: '点赞数',
+                    dataIndex: 'voteCount'
+                },
+                {
+                    title: 'Action',
+                    key: 'action',
+                    slots: { customRender: 'action' }
+                }
             ]
 
 
@@ -87,8 +127,14 @@
             }
 
 
-            createVNode(() => {
-                handleQuery
+            const sel = ref()
+            sel.value = {
+                page: 1,
+                size: 10
+            }
+
+            onMounted(() => {
+                handleQuery(sel)
             })
 
 
@@ -97,6 +143,7 @@
                 pagination,
                 ebooks,
                 handleQuery,
+                columns
             }
         }
     }
