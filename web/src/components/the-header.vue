@@ -10,12 +10,12 @@
             <a-menu-item key="1">
                 <router-link to="/admin/ebook">电子书管理</router-link>
             </a-menu-item>
-            <a-menu-item key="1">
+            <a-menu-item key="2">
                 <router-link to="/admin/doc">电子书内容管理</router-link>
             </a-menu-item>
-
-            <a-menu-item key="2">nav 2</a-menu-item>
-            <a-menu-item key="3">nav 3</a-menu-item>
+            <a-menu-item key="3">
+                <router-link to="/admin/category">电子书分类管理</router-link>
+            </a-menu-item>
         </a-menu>
     </a-layout-header>
 </template>
