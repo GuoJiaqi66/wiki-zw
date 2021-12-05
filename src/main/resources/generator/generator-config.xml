@@ -38,11 +38,11 @@
 
 <!--        <table tableName="demo" domainObjectName="Demo" ></table>-->
 <!--        <table tableName="ebook"></table>-->
-        <table tableName="category"/>
+<!--        <table tableName="category"/>-->
 <!--            <table tableName="citytwo"></table>-->
 <!--            <table tableName="doc"></table>-->
 <!--            <table tableName="user"></table>-->
-<!--            <table tableName="content"></table>-->
+            <table tableName="content"></table>
 <!--            <table tableName="ebook_snapshot"></table>-->
 
 

@@ -1,0 +1,15 @@
+GET http://localhost:8880/doc/list
+Accept: application/json
+
+###
+GET http://localhost:8880/doc/all/1
+Accept: application/json
+
+###
+
+GET http://localhost:8880/doc/all/2
+Accept: application/json
+
+###
+
+DELETE http://localhost:8880/doc/delete/122621516482482176
