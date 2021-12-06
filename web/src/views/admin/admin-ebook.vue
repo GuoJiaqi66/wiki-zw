@@ -4,11 +4,7 @@
             <p style="margin-top: 10px">
             <a-form
                     layout="inline"
-                    :model="param"
             >
-                <a-form-item>
-                    <a-input v-model:value="param.name" placeholder="名称" />
-                </a-form-item>
                 <a-form-item>
                     <a-button type="primary" @click="handleQuery({page: 1, size: pagination.pageSize})">
                         查询
@@ -26,9 +22,7 @@
                     :columns="columns"
                     :row-key="record => record.id"
                     :data-source="ebooks"
-                    :pagination="pagination"
-                    :loading="loading"
-                    @change="handleTableChange"
+                    :pagination="false"
             >
                 <template #cover="{ text: cover }">
                     <img :src="cover" alt="">
@@ -66,8 +60,10 @@
 
     </a-layout>
 
+  <p>存在bug：存没问题，删除存在问题，因为id</p>
+  
     <a-modal v-model:visible="modalVisible" title="电子书表单" @ok="handleOk">
-        <a-form :model="ebook" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
+        <a-form v-model:model="ebook" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
             <a-form-item label="封面">
                 <a-input v-model:value="ebook.cover" />
             </a-form-item>
@@ -75,8 +71,8 @@
                 <a-input v-model:value="ebook.name" />
             </a-form-item>
             <a-form-item label="分类">
-                <a-cascader :value="categoryIds"
-                            :field-name="{ label: 'name', value: 'id', children: 'children'}"
+                <a-cascader v-model:value="categoryIds"
+                            :field-name="{ label: 'name', value: 'id', children: 'children' }"
                             :options="level1">
 
                 </a-cascader>
@@ -88,10 +84,6 @@
     </a-modal>
 
 
-    <p>
-        {{level1.value}}
-    </p>
-
 </template>
 
 <script lang="ts">
@@ -101,17 +93,11 @@
 
     import { message } from 'ant-design-vue';
     import {Tool} from "@/util/tool";
+    
 
     export default {
         name: "admin-ebook",
         setup() {
-            const param = ref();
-            param.value = {}
-            const pagination = ref({
-                current: 1,
-                pageSize: 10,
-                total: 0
-            })
 
             const columns =[
                 {
@@ -146,167 +132,159 @@
                 }
             ]
 
-
-            /*
-            * 电子书表单
-            * */
-            const ebook = ref();
-
-            const categoryIds = ref();
-
-            const ebooks = ref()
-            ebooks.value = []
-
-
-            /*
-            * 新增 编辑 对话驱动
-            * */
-            const modalVisible= ref(true);
-
-
-
+            interface Option {
+                value: number;
+                label: string;
+                children?: Option[];
+            }
+            
             // 新增
-            const add = () => {
-                modalVisible.value = true
-                ebook.value = []
-            }
-
-
-
-
-            // 数据查询
-            const handleQuery = (params: any) => {
-                ebooks.value = []
-                axios.get("ebook/list", {
-                    params: {
-                        page: params.page,
-                        size: params.size,
-                        name: params.name
-                    }
-                }).then(resp => {
-                    const data = resp.data
-
-                    if (data.success) {
-                        console.log("数据查询成功：");
-                        ebooks.value = data.content.list
-                        console.log(ebooks.value);
-                        console.log(data)
-
-                        // 重置分组按钮
-                        pagination.value.current = params.page
-                        pagination.value.total = data.content.total
-                    } else {
-                        message.error(data.message)
-                    }
-
-                }).catch(err => {
-                    console.log("查询数据：error");
-                    console.log(err);
-                })
-            }
-
-            /*
-            * 查询所有分类
-            * */
-            const level1 = ref()
-            level1.value = []
-            let categorys: any;
-
-            const handleQueryCategory = () => {
-                handleQuery(sel)
-                axios.get("/category/all").then(resp => {
-                    const data = resp.data
-                    if (data.success) {
-                        categorys = data.content
-                        console.log("原始数据", categorys);
-
-                        level1.value = []
-                        level1.value = Tool.array2Tree(categorys, 0);
-                        console.log("树形结构", level1);
-
-                        handleQuery({
-                            page: 1,
-                            size: pagination.value.pageSize
-                        })
-                    }
-                })
-            }
-
-            // 拿到分类
-            const getCategoryName = (childrenId : number) => {
-                let result = ""
-                categorys.forEach((item: any) => {
-                    if (item.id === childrenId) {
-                        result = item.name;
-                    }
-                })
-                return result;
-            }
-
-            const sel = ref()
-            sel.value = {
-                page: 1,
-                size: 100
-            }
-
-            onMounted(() => {
-                handleQueryCategory()
-                console.log("modalVisible", modalVisible.value);
-            })
-
-            const handleOk = () => {
-                modalVisible.value = false
+            const saveEbook = () => {
+                console.log("ebook值(saveEbook)：", ebook.value.name);
                 ebook.value.category1Id = categoryIds.value[0]
                 ebook.value.category2Id = categoryIds.value[1]
                 axios.post("/ebook/save", ebook.value).then(resp => {
                     const data = resp.data
                     if (data.success) {
-                        // 重新加载列表
-                        handleQuery({
-                            page: pagination.value.current,
-                            size: pagination.value.pageSize
-                        })
+                        message.success("添加电子书成功")
+                        handleQueryCategory()
+                        ebook.value = {}
+                        categoryIds.value = []
+                    }
+                })
+                
+            }
+            
+            // 删除
+            const deleteEbook = (id: number) => {
+                axios.delete("/ebook/delete/" + id).then(resp => {
+                    const data = resp.data
+                    if (data.success) {
+                        handleQueryCategory()
                     }
                 })
             }
+            
+            const pagination = ref({
+                // 当前页
+                current: 1,
+                pageSize: 10,
+                total: 0
+            })
+            
+            const modalVisible = ref(false)
 
-            // action编辑
+            const ebooks = ref()
+            
+            // 查询ebook
+            const handleQuery = () => {
+                axios.get("/ebook/list", {
+                    params: {
+                        page: pagination.value.current,
+                        size: pagination.value.pageSize
+                    }
+                }).then(resp => {
+                    const data = resp.data
+                    if (data.success) {
+                        message.success("电子书查询成功")
+                        ebooks.value = data.content.list
+                    } else {
+                        message.error(data.message)
+                    }
+                })
+            }
+            
+            // 查询category
+            let categorys: any
+            const level1 = ref()
+            const handleQueryCategory = () => {
+                axios.get("/category/all").then(resp => {
+                    const data = resp.data
+                    if (data.success) {
+                        message.success("分类查询成功")
+                        handleQuery()
+                        categorys = data.content
+                        
+                        level1.value = {}
+                        level1.value = Tool.array2Tree(categorys, 0)
+                        console.log("category:", categorys);
+                    }
+                })
+            }
+            
+            const ebook = ref()
+            
+            // 新增
+            const add = () => {
+                categoryIds.value = []
+                ebook.value = {}
+                modalVisible.value = true
+                console.log("ebook值(add)：", ebook.value);
+                saveEbook()
+            }
+           const categoryIds =ref()
+            // 分类名处理
+            const getCategoryName = (cid : number) => {
+              let result = ""
+                categorys.forEach((item: any) => {
+                  if (item.id === cid) {
+                      result = item.name
+                  }
+              })
+                return result
+            }
+            
+            // 编辑按钮
             const edit = (record: any) => {
-                console.log(record);
-                modalVisible.value = true;
-                alert(modalVisible.value)
+                modalVisible.value = true
+                ebook.value = Tool.copy(record)
                 categoryIds.value = [ebook.value.category1Id, ebook.value.category2Id]
+                console.log("ebook值：", ebook.value);
             }
 
             // action删除按钮的二次确定事件
-            const confirm = (e: MouseEvent) => {
+            const confirm = (e: MouseEvent, record : any) => {
                 console.log("确定删除按钮点击事件发生：", e);
                 message.success('删除完毕');
+                deleteEbook(record.id)
             };
 
             const cancel = (e: MouseEvent) => {
                 console.log("取消删除按钮点击事件发生", e);
                 message.error('删除取消');
             };
-
-
+            
+            onMounted(() => {
+                handleQueryCategory()
+            })
+            
+            // 编辑，新增提交
+            const handleOk =() => {
+                modalVisible.value = false
+                alert(categoryIds.value)
+                saveEbook()
+            }
+            
+            
+            
+            
             return {
-                param,
-                pagination,
-                ebooks,
-                handleQuery,
-                columns,
-                getCategoryName,
-                categorys,
-                confirm,
-                cancel,
-                edit,
                 modalVisible,
-                handleOk,
+                ebooks,
+                columns,
+                categorys,
                 ebook,
                 level1,
+                categoryIds,
+
+                handleQueryCategory,
+                handleQuery,
                 add,
-                categoryIds
+                getCategoryName,
+                edit,
+                confirm,
+                cancel,
+                handleOk
             }
         }
     }
