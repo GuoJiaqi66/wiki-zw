@@ -211,6 +211,8 @@
 
                 doc.value = Tool.copy(record)
 
+                findContent(record.id)
+
                 // 否则将全部被禁用
                 treeSelectData.value = Tool.copy(level1.value);
                 setDisable(treeSelectData.value, record.id);
@@ -298,6 +300,18 @@
             createVNode(() => {
                 console.log("createVNode", createVNode);
             })
+
+            const findContent = (id : any) => {
+                axios.get("/doc/find-content/" + id).then(resp => {
+                    const data = resp.data
+                    if (data.success) {
+                        editor.txt.html(data.content)
+                        handleQuery()
+                    } else {
+                        message.error(data.message)
+                    }
+                })
+            }
 
             return {
                 level1,

@@ -13,3 +13,10 @@ Accept: application/json
 ###
 
 DELETE http://localhost:8880/doc/delete/122621516482482176
+
+###
+
+GET http://localhost:8880/doc/find-content/122895016229212160
+Accept: application/json
+
+###

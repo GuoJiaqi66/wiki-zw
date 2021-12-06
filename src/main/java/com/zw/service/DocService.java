@@ -8,6 +8,7 @@ import com.zw.domain.Doc;
 import com.zw.domain.DocExample;
 import com.zw.mapper.ContentMapper;
 import com.zw.mapper.DocMapper;
+import com.zw.mapper.DocMapperCust;
 import com.zw.req.DocQueryReq;
 import com.zw.req.DocSaveReq;
 import com.zw.resp.DocQueryResp;
@@ -16,6 +17,7 @@ import com.zw.util.CopyUtil;
 import com.zw.util.SnowFlake;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.ObjectUtils;
@@ -36,6 +38,9 @@ public class DocService {
 
     @Resource
     ContentMapper contentMapper;
+
+    @Resource
+    DocMapperCust docMapperCust;
 
 
     public List<DocQueryResp> all(Long ebookId) {
@@ -103,7 +108,17 @@ public class DocService {
         DocExample.Criteria criteria = docExample.createCriteria();
         criteria.andIdIn(ids);
         docMapper.deleteByExample(docExample);
+    }
 
+    public String findContent(Long id) {
+        Content content = contentMapper.selectByPrimaryKey(id);
+        // 阅读数+1
+        docMapperCust.increaseViewCount(id);
+        if (ObjectUtils.isEmpty(content)) {
+            return "";
+        } else {
+            return content.getContent();
+        }
     }
 
 }
