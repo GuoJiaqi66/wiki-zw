@@ -7,6 +7,9 @@
                 mode="horizontal"
                 :style="{ lineHeight: '64px' }"
         >
+          <a-menu-item key="0">
+            <router-link to="/doc">电子书首页</router-link>
+          </a-menu-item>
             <a-menu-item key="1">
                 <router-link to="/admin/ebook">电子书管理</router-link>
             </a-menu-item>

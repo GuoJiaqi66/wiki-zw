@@ -81,6 +81,19 @@
             <artifactId>validation-api</artifactId>
         </dependency>
 
+
+        <!-- 整合redis -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!-- 集成webSocket -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

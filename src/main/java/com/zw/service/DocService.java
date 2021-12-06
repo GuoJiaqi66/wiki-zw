@@ -6,6 +6,8 @@ import com.zw.domain.Content;
 import com.zw.domain.ContentExample;
 import com.zw.domain.Doc;
 import com.zw.domain.DocExample;
+import com.zw.exception.BusinessException;
+import com.zw.exception.BusinessExceptionCode;
 import com.zw.mapper.ContentMapper;
 import com.zw.mapper.DocMapper;
 import com.zw.mapper.DocMapperCust;
@@ -14,9 +16,13 @@ import com.zw.req.DocSaveReq;
 import com.zw.resp.DocQueryResp;
 import com.zw.resp.PageResp;
 import com.zw.util.CopyUtil;
+import com.zw.util.RedisUtil;
+import com.zw.util.RequestContext;
 import com.zw.util.SnowFlake;
+import com.zw.websocket.WebSocketServer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.slf4j.MDC;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +47,12 @@ public class DocService {
 
     @Resource
     DocMapperCust docMapperCust;
+
+    @Resource
+    RedisUtil redisUtil;
+
+    @Resource
+    WsService wsService;
 
 
     public List<DocQueryResp> all(Long ebookId) {
@@ -119,6 +131,20 @@ public class DocService {
         } else {
             return content.getContent();
         }
+    }
+
+    public void vote(Long id) {
+        String ip = RequestContext.getRemoteAddr();
+        if (redisUtil.validateRepeat("DOC_VOTE_" + id + "_" + ip, 60 * 60 * 24)) {
+            docMapperCust.increaseVoteCount(id);
+        } else {
+            throw new BusinessException(BusinessExceptionCode.VOTE_REPEAT);
+        }
+
+        Doc docDb = docMapper.selectByPrimaryKey(id);
+        String logId = MDC.get("LOG_ID");
+        wsService.sendInfo("【" + docDb.getName() + "】" + "被点赞", logId);
+
     }
 
 }
