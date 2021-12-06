@@ -6,6 +6,7 @@ import com.zw.req.UserSaveReq;
 import com.zw.resp.CommonResp;
 import com.zw.resp.PageResp;
 import com.zw.service.UserService;
+import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -28,8 +29,18 @@ public class UserController {
 
     @PostMapping("/save")
     public CommonResp save(@Valid @RequestBody UserSaveReq req) {
-
+        req.setPassword(DigestUtils.md5DigestAsHex(req.getPassword().getBytes()));
         CommonResp resp = new CommonResp();
+        userService.save(req);
         return resp;
     }
+
+    @DeleteMapping("/delete/{id}")
+    public CommonResp delete(@PathVariable Long id) {
+        CommonResp resp = new CommonResp<>();
+        userService.delete(id);
+        return resp;
+    }
+
+
 }
