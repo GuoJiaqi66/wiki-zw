@@ -73,7 +73,7 @@
                             <a-input v-model:value="doc.sort" placeholder="顺序"/>
                         </a-form-item>
                         <a-form-item>
-                            <a-button type="primary">
+                            <a-button type="primary" @click="handlePreviewContent()">
                                 内容预览
                             </a-button>
                         </a-form-item>
@@ -81,17 +81,16 @@
                             <div id="content"></div>
                         </a-form-item>
                     </a-form>
-
-                    <p>
-
-                    </p>
-
-
-
                 </a-col>
             </a-row>
         </a-layout-content>
     </a-layout>
+
+    <a-drawer width="900" placement="right" :closable="false" :visible="drawerVisible" @close="onDrawerClose">
+        <div class="wangeditor" :innerHTML="previewHtml"></div>
+    </a-drawer>
+
+    <!-- 提交保存后没有请求参数 -->
 </template>
 
 <script lang="ts">
@@ -249,19 +248,41 @@
 
             const handleSave = () => {
                 doc.value.content = editor.txt.html()
+                alert(doc.value.content)
                 axios.post("/doc/save", doc.value).then(resp => {
+                    alert(doc.value)
                     const data = resp.data
                     if (data.success) {
+                        doc.value = {
+                            ebookId : router.query.ebookId
+                        }
                         message.success("保存成功")
-                        doc.value = []
+
                         handleQuery()
                         doc.value.sort = ""
                         editor.txt.clear()
                     } else {
                         message.error(data.message)
+                        editor.txt.clear()
                     }
                 })
             }
+
+
+            const drawerVisible = ref(false)
+            const previewHtml = ref()
+
+            // 预览
+            const handlePreviewContent = () => {
+                previewHtml.value = editor.txt.html()
+                drawerVisible.value = true
+            }
+
+            // 关闭预览模块
+            const onDrawerClose = () => {
+                drawerVisible.value = false
+            }
+
 
 
             let editor: E
@@ -270,6 +291,7 @@
                 handleQuery()
                 editor = new E("#content")
                 editor.config.zIndex = 0
+                editor.config.placeholder = '内容填写(必填)'
                 editor.create()
             })
 
@@ -292,6 +314,10 @@
                 treeSelectData,
 
                 add,
+                handlePreviewContent,
+                onDrawerClose,
+                drawerVisible,
+                previewHtml
             }
         }
     }
