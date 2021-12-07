@@ -1,5 +1,7 @@
 package com.zw.util.snowFlakeldGenerator;
 
+import org.springframework.stereotype.Component;
+
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -13,6 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
  * @author xuxinsheng
  * @since 2021-02-03
  */
+@Component
 public final class SnowFlakeIdGenerator {
     /**
      * 初始时间截 (2021-01-01)

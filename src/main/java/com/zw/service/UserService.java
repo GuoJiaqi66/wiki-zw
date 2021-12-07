@@ -7,10 +7,10 @@ import com.zw.domain.UserExample;
 import com.zw.exception.BusinessException;
 import com.zw.exception.BusinessExceptionCode;
 import com.zw.mapper.UserMapper;
-import com.zw.req.UserQueryReq;
-import com.zw.req.UserQueryResp;
-import com.zw.req.UserSaveReq;
+import com.zw.req.*;
 import com.zw.resp.PageResp;
+import com.zw.resp.UserLoginResp;
+import com.zw.resp.UserQueryResp;
 import com.zw.util.CopyUtil;
 import com.zw.util.snowFlakeldGenerator.SnowFlakeIdGenerator;
 import org.slf4j.Logger;
@@ -96,6 +96,30 @@ public class UserService {
             return null;
         } else {
             return userList.get(0);
+        }
+    }
+
+
+    public void resetPassword(UserResetPasswordReq req) {
+        User user = CopyUtil.copy(req, User.class);
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    public UserLoginResp login(UserLoginReq req) {
+        User userDB = selectByLoginName(req.getLoginName());
+        if (ObjectUtils.isEmpty(userDB)) {
+            LOG.info("用户名不存在, {}", req.getLoginName());
+            throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
+        } else {
+            if (userDB.getPassword().equals(req.getPassword())) {
+                // ok
+                UserLoginResp userLoginResp = CopyUtil.copy(userDB, UserLoginResp.class);
+                return userLoginResp;
+            } else {
+                // 密码错误
+                LOG.info("密码错误，输入密码：{}, 数据库密码：{}", req.getPassword(), userDB.getPassword());
+                throw new BusinessException(BusinessExceptionCode.LOGIN_USER_ERROR);
+            }
         }
     }
 }

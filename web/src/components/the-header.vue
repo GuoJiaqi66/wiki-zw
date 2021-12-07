@@ -19,6 +19,9 @@
             <a-menu-item key="3">
                 <router-link to="/admin/category">电子书分类管理</router-link>
             </a-menu-item>
+          <a-menu-item key="4">
+                <router-link to="/admin/user">用户管理</router-link>
+            </a-menu-item>
         </a-menu>
     </a-layout-header>
 </template>

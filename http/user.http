@@ -2,3 +2,12 @@ GET http://localhost:8880/user/list
 Accept: application/json
 
 ###
+
+POST http://localhost:8880/user/save
+Accept: application/json
+{
+loginName: "GJQ",
+name: "gjq",
+password: "123456GJQ"
+}
+###
