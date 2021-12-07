@@ -67,6 +67,9 @@
   import axios from "axios";
   import {message} from "ant-design-vue";
   import store from '@/store'
+  import router from "@/router";
+  import defaultResult from "ant-design-vue/es/_util/isMobile";
+  import any = defaultResult.any;
   
   declare let hexMd5: any;
   declare let KEY: any;
