@@ -28,20 +28,21 @@ public class EbookService {
     @Resource
     private SnowFlake snowFlake;
 
-    public PageResp<EbookQueryResp> list(EbookQueryReq req) {
+    final Logger LOG = LoggerFactory.getLogger(EbookService.class);
 
-        final Logger LOG = LoggerFactory.getLogger(EbookService.class);
+    public PageResp<EbookQueryResp> list(EbookQueryReq req) {
 
         EbookExample ebookExample = new EbookExample();
         EbookExample.Criteria criteria = ebookExample.createCriteria();
         if (!ObjectUtils.isEmpty(req.getName())) {
             criteria.andNameLike("%" + req.getName() + "%");
         }
-        if (!ObjectUtils.isEmpty(req.getCategory1Id())) {
+        /*if (!ObjectUtils.isEmpty(req.getCategory1Id())) {
             criteria.andCategory1IdEqualTo(req.getCategory1Id());
-        }
+        }*/
         if (!ObjectUtils.isEmpty(req.getCategory2Id())) {
-            criteria.andCategory1IdEqualTo(req.getCategory2Id());
+            // 根据category2id查找
+            criteria.andCategory2IdEqualTo(req.getCategory2Id());
         }
 
         PageHelper.startPage(req.getPage(), req.getSize());
