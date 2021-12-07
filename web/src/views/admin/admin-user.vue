@@ -121,7 +121,7 @@
                 loginName: ""
             }
             
-            const user = ref({})
+            const user = ref()
 
             const users = ref();
 
