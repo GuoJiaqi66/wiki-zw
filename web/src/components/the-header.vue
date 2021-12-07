@@ -9,19 +9,19 @@
                 mode="horizontal"
                 :style="{ lineHeight: '64px' }"
         >
-          <a-menu-item key="0">
+          <!--<a-menu-item key="0">
             <router-link to="/doc">电子书首页</router-link>
-          </a-menu-item>
-            <a-menu-item key="1">
+          </a-menu-item>-->
+            <a-menu-item key="1" :style="user.id? {} : {display:'none'}">
                 <router-link to="/admin/ebook">电子书管理</router-link>
             </a-menu-item>
-            <a-menu-item key="2">
+            <a-menu-item key="2" :style="user.id? {} : {display:'none'}">
                 <router-link to="/admin/doc">电子书内容管理</router-link>
             </a-menu-item>
-            <a-menu-item key="3">
+            <a-menu-item key="3" :style="user.id? {} : {display:'none'}">
                 <router-link to="/admin/category">电子书分类管理</router-link>
             </a-menu-item>
-          <a-menu-item key="4">
+          <a-menu-item key="4" :style="user.id? {} : {display:'none'}">
                 <router-link to="/admin/user">用户管理</router-link>
           </a-menu-item>
           
