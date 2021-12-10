@@ -13,7 +13,7 @@ import java.util.HashMap;
 @Component
 @ServerEndpoint("/ws/{token}")
 public class WebSocketServer {
-    private static final Logger LOG = LoggerFactory.getLogger(com.zw.websocket.WebSocketServer.class);
+    private static final Logger LOG = LoggerFactory.getLogger(WebSocketServer.class);
 
     /**
      * 每个客户端一个token
@@ -60,7 +60,6 @@ public class WebSocketServer {
     /**
      * 群发消息
      */
-    // @Async 会发生报错
     public void sendInfo(String message) {
         for (String token : map.keySet()) {
             Session session = map.get(token);

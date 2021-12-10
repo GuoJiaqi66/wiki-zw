@@ -109,7 +109,7 @@
                 axios.get("/doc/vote/" + doc.value.id).then(resp => {
                     const data = resp.data
                     if (data.success) {
-                        doc.value.voteCount = doc.value.voteCount + 1
+                        doc.value.voteCount++
                     } else {
                         message.error(data.message)
                     }
