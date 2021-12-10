@@ -1,12 +1,12 @@
 <template>
   <div id="nav">
-      <a-layout-header class="header">
+    <a-layout id="components-layout-demo-top-side-2">
           <TheHeader />
 
           <router-view/>
 
           <TheFooter />
-      </a-layout-header>
+    </a-layout>
 
   </div>
 </template>

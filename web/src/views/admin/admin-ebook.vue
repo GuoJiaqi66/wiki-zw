@@ -60,7 +60,6 @@
 
     </a-layout>
 
-  <p>存在bug：存没问题，删除存在问题，因为id</p>
   
     <a-modal v-model:visible="modalVisible" title="电子书表单" @ok="handleOk">
         <a-form v-model:model="ebook" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
@@ -280,5 +279,8 @@
 </script>
 
 <style scoped>
-
+  img {
+    width: 50px;
+    height: 50px;
+  }
 </style>
