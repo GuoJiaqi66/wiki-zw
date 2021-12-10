@@ -46,7 +46,7 @@
                                 title="请再次确定是否删除?"
                                 ok-text="确定"
                                 cancel-text="取消"
-                                @confirm="confirm"
+                                @confirm="deleteEbook(record.id)"
                                 @cancel="cancel"
                         >
                             <a-button type="danger">
@@ -71,11 +71,11 @@
                 <a-input v-model:value="ebook.name" />
             </a-form-item>
             <a-form-item label="分类">
-                <a-cascader v-model:value="categoryIds"
-                            :field-name="{ label: 'name', value: 'id', children: 'children' }"
-                            :options="level1">
-
-                </a-cascader>
+                <a-cascader
+                  v-model:value="categoryIds"
+                  :fieldNames="{ label: 'name', value: 'id', children: 'children' }"
+                  :options="level1"/>
+              
             </a-form-item>
             <a-form-item label="描述">
                 <a-input v-model:value="ebook.description" />
@@ -149,7 +149,6 @@
                         message.success("添加电子书成功")
                         handleQueryCategory()
                         ebook.value = {}
-                        categoryIds.value = []
                     }
                 })
                 
@@ -160,7 +159,10 @@
                 axios.delete("/ebook/delete/" + id).then(resp => {
                     const data = resp.data
                     if (data.success) {
+                        message.success("电子书删除完毕")
                         handleQueryCategory()
+                    } else {
+                        message.error("电子书删除出错")
                     }
                 })
             }
@@ -216,7 +218,6 @@
             
             // 新增
             const add = () => {
-                categoryIds.value = []
                 ebook.value = {}
                 modalVisible.value = true
                 console.log("ebook值(add)：", ebook.value);
@@ -243,11 +244,13 @@
             }
 
             // action删除按钮的二次确定事件
-            const confirm = (e: MouseEvent, record : any) => {
+            /*const confirm = (e: MouseEvent, record : any) => {
                 console.log("确定删除按钮点击事件发生：", e);
-                message.success('删除完毕');
+                alert(record.id)
+                console.log(record);
+
                 deleteEbook(record.id)
-            };
+            };*/
 
             const cancel = (e: MouseEvent) => {
                 console.log("取消删除按钮点击事件发生", e);
@@ -261,7 +264,6 @@
             // 编辑，新增提交
             const handleOk =() => {
                 modalVisible.value = false
-                alert(categoryIds.value)
                 saveEbook()
             }
             
@@ -276,13 +278,15 @@
                 ebook,
                 level1,
                 categoryIds,
+                
+                deleteEbook,
 
                 handleQueryCategory,
                 handleQuery,
                 add,
                 getCategoryName,
                 edit,
-                confirm,
+                // confirm,
                 cancel,
                 handleOk
             }
