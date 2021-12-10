@@ -107,7 +107,6 @@
 
             const visibleVal = ref(false);
             const handleOk = (e: MouseEvent) => {
-                console.log(e);
                 visibleVal.value = false
                 add()
             };

@@ -136,7 +136,6 @@
                     const data = resp.data
                     if (data.success) {
                         users.value = data.content.list
-                        console.log("users:", users);
 
                         pagination.value.current = param.page;
                         pagination.value.total = data.content.total;

@@ -51,8 +51,6 @@
             const router = useRoute()
             
             const onSelect = (selectedKeys : any, info : any) => {
-                console.log("selectedKeys数据：", selectedKeys);
-                console.log("info数据:", info);
                 if (Tool.isNotEmpty(selectedKeys)) {
                     // 节点信息
                     doc.value = info.selectedNodes[0].props
@@ -75,12 +73,10 @@
                     if (data.success) {
                         const docVal = data.content
 
-                        console.log("原始数据", docVal);
 
                         level1.value = Tool.array2Tree(docVal, 0)
 
 
-                        console.log("level1数据:", level1);
                         
                         if (Tool.isNotEmpty(level1)) {
                             handleQueryContent(level1.value[0].id)

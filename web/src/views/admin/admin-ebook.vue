@@ -140,7 +140,6 @@
             
             // 新增
             const saveEbook = () => {
-                console.log("ebook值(saveEbook)：", ebook.value.name);
                 ebook.value.category1Id = categoryIds.value[0]
                 ebook.value.category2Id = categoryIds.value[1]
                 axios.post("/ebook/save", ebook.value).then(resp => {
@@ -209,7 +208,6 @@
                         
                         level1.value = {}
                         level1.value = Tool.array2Tree(categorys, 0)
-                        console.log("category:", categorys);
                     }
                 })
             }
@@ -220,7 +218,6 @@
             const add = () => {
                 ebook.value = {}
                 modalVisible.value = true
-                console.log("ebook值(add)：", ebook.value);
                 saveEbook()
             }
            const categoryIds =ref()
@@ -240,20 +237,9 @@
                 modalVisible.value = true
                 ebook.value = Tool.copy(record)
                 categoryIds.value = [ebook.value.category1Id, ebook.value.category2Id]
-                console.log("ebook值：", ebook.value);
             }
 
-            // action删除按钮的二次确定事件
-            /*const confirm = (e: MouseEvent, record : any) => {
-                console.log("确定删除按钮点击事件发生：", e);
-                alert(record.id)
-                console.log(record);
-
-                deleteEbook(record.id)
-            };*/
-
             const cancel = (e: MouseEvent) => {
-                console.log("取消删除按钮点击事件发生", e);
                 message.error('删除取消');
             };
             
@@ -286,7 +272,6 @@
                 add,
                 getCategoryName,
                 edit,
-                // confirm,
                 cancel,
                 handleOk
             }

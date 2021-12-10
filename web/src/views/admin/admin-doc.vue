@@ -128,13 +128,12 @@
              * 将某节点及其子孙节点全部置为disabled
              */
             const setDisable = (treeSelectData: any, id: any) => {
-                // console.log(treeSelectData, id);
                 // 遍历数组，即遍历某一层节点
                 for (let i = 0; i < treeSelectData.length; i++) {
                     const node = treeSelectData[i];
                     if (node.id === id) {
                         // 如果当前节点就是目标节点
-                        console.log("disabled", node);
+                        // console.log("disabled", node);
                         // 将目标节点设置为disabled
                         node.disabled = true;
 
@@ -178,13 +177,10 @@
 
             const handleQuery = () => {
                 axios.get("/doc/all/" + router.query.ebookId).then(resp => {
-                    console.log("/doc/all请求结果", resp);
                     docs.value = resp.data.content
 
                     level1.value = Tool.array2Tree(docs.value, 0)
 
-                    console.log("level1", level1.value);
-                    console.log("doc", docs.value);
 
                     // 父文档下拉框初始化，相当于点击新增
                     treeSelectData.value = Tool.copy(level1.value) || [];
@@ -207,7 +203,6 @@
             const edit = (record: any) => {
                 editor.txt.clear()
 
-                console.log("编辑", record);
 
                 doc.value = Tool.copy(record)
 
@@ -236,14 +231,12 @@
 
             // action删除按钮的二次确定事件
             const confirm = (e: MouseEvent, record : any) => {
-                console.log("确定删除按钮点击事件发生：", e);
                 message.success('删除完毕');
                 alert(record.id)
                 removeDoc(record.id)
             };
 
             const cancel = (e: MouseEvent) => {
-                console.log("取消删除按钮点击事件发生", e);
                 message.error('删除取消');
             };
 
@@ -297,9 +290,6 @@
                 editor.create()
             })
 
-            createVNode(() => {
-                console.log("createVNode", createVNode);
-            })
 
             const findContent = (id : any) => {
                 axios.get("/doc/find-content/" + id).then(resp => {

@@ -94,7 +94,6 @@ export default defineComponent({
     
     const handleClick = (value: any) => {
         category2Id = value.key
-        console.log(value);
         handleQueryEbook()
     }
     
@@ -127,15 +126,12 @@ export default defineComponent({
       }).then((response) => {
         const data = response.data;
         ebooks.value = data.content.list;
-        console.log("ebooks");
-        console.log(ebooks);
         // ebooks1.books = data.content;
       });
     };
 
     onMounted(() => {
       handleQueryEbook()
-      console.log("onMounted");
         handleQueryCategory()
     });
 

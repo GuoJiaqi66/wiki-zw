@@ -4681,3 +4681,174 @@ Caused by: java.lang.NumberFormatException: For input string: "undefined"
 2021-12-10 17:46:16.956 INFO  com.zw.aspect.LogAspect                           :101  [32m124446577774432256[0;39m 返回结果: {"content":{"list":[{"category1Id":200,"category2Id":202,"description":"零基础入门Java开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":30},{"category1Id":100,"category2Id":101,"description":"零基础入门Vue开发，企业级应用开发最佳首选框架","docCount":0,"id":2,"name":"Vue 入门教程","viewCount":0,"voteCount":0},{"category1Id":300,"category2Id":301,"description":"零基础入门Python开发，企业级应用开发最佳首选框架","docCount":0,"id":3,"name":"Python 入门教程","viewCount":0,"voteCount":0},{"category1Id":400,"category2Id":401,"description":"零基础入门MySQL开发，企业级应用开发最佳首选框架","docCount":0,"id":4,"name":"MySQL 入门教程","viewCount":0,"voteCount":0},{"category1Id":400,"category2Id":402,"description":"零基础入门Oracle开发，企业级应用开发最佳首选框架","docCount":0,"id":5,"name":"Oracle 入门教程","viewCount":0,"voteCount":0}],"total":5},"success":true}
 2021-12-10 17:46:16.956 INFO  com.zw.aspect.LogAspect                           :102  [32m124446577774432256[0;39m ------------- 结束 耗时：709 ms -------------
 2021-12-10 17:46:29.456 INFO  com.zw.websocket.WebSocketServer                  :41   [32m                  [0;39m 连接关闭，token：Wjt7nrsQme，session id：0！当前连接数：0
+2021-12-10 17:47:06.058 INFO  com.zw.websocket.WebSocketServer                  :32   [32m                  [0;39m 有新连接：token：Y5ReR0tPi9，session id：1，当前连接数：1
+2021-12-10 17:47:06.093 INFO  com.zw.aspect.LogAspect                           :62   [32m124446786843709440[0;39m ------------- 开始 -------------
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :62   [32m124446786847903744[0;39m ------------- 开始 -------------
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :63   [32m124446786843709440[0;39m 请求地址: http://127.0.0.1:8880/category/all GET
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :63   [32m124446786847903744[0;39m 请求地址: http://127.0.0.1:8880/ebook/list GET
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :64   [32m124446786843709440[0;39m 类名方法: com.zw.controller.CategoryController.all
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :64   [32m124446786847903744[0;39m 类名方法: com.zw.controller.EbookController.list
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :65   [32m124446786843709440[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :65   [32m124446786847903744[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:06.094 INFO  com.zw.aspect.LogAspect                           :89   [32m124446786843709440[0;39m 请求参数: []
+2021-12-10 17:47:06.096 INFO  com.zw.aspect.LogAspect                           :89   [32m124446786847903744[0;39m 请求参数: [{"page":1,"size":1000}]
+2021-12-10 17:47:06.097 DEBUG com.zw.mapper.EbookMapper.selectByExample         :137  [32m124446786847903744[0;39m ==>  Preparing: select id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count from ebook
+2021-12-10 17:47:06.097 DEBUG com.zw.mapper.CategoryMapper.selectByExample      :137  [32m124446786843709440[0;39m ==>  Preparing: select id, parent, name, sort from category order by sort asc
+2021-12-10 17:47:06.098 DEBUG com.zw.mapper.EbookMapper.selectByExample         :137  [32m124446786847903744[0;39m ==> Parameters: 
+2021-12-10 17:47:06.098 DEBUG com.zw.mapper.CategoryMapper.selectByExample      :137  [32m124446786843709440[0;39m ==> Parameters: 
+2021-12-10 17:47:06.100 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==    Columns: id, parent, name, sort
+2021-12-10 17:47:06.100 TRACE com.zw.mapper.EbookMapper.selectByExample         :143  [32m124446786847903744[0;39m <==    Columns: id, name, category1_id, category2_id, description, cover, doc_count, view_count, vote_count
+2021-12-10 17:47:06.101 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 122726123326017536, 122725855960109060, ios, 1
+2021-12-10 17:47:06.101 TRACE com.zw.mapper.EbookMapper.selectByExample         :143  [32m124446786847903744[0;39m <==        Row: 1, Spring Boot 入门教程, 200, 202, 零基础入门Java开发，企业级应用开发最佳首选框架, null, 6, 0, 30
+2021-12-10 17:47:06.101 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 100, 0, 前端开发, 100
+2021-12-10 17:47:06.101 TRACE com.zw.mapper.EbookMapper.selectByExample         :143  [32m124446786847903744[0;39m <==        Row: 2, Vue 入门教程, 100, 101, 零基础入门Vue开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2021-12-10 17:47:06.101 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 101, 100, vue, 101
+2021-12-10 17:47:06.101 TRACE com.zw.mapper.EbookMapper.selectByExample         :143  [32m124446786847903744[0;39m <==        Row: 3, Python 入门教程, 300, 301, 零基础入门Python开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2021-12-10 17:47:06.102 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 102, 100, Html & Css, 102
+2021-12-10 17:47:06.102 TRACE com.zw.mapper.EbookMapper.selectByExample         :143  [32m124446786847903744[0;39m <==        Row: 4, MySQL 入门教程, 400, 401, 零基础入门MySQL开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2021-12-10 17:47:06.102 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 200, 0, Java, 200
+2021-12-10 17:47:06.102 TRACE com.zw.mapper.EbookMapper.selectByExample         :143  [32m124446786847903744[0;39m <==        Row: 5, Oracle 入门教程, 400, 402, 零基础入门Oracle开发，企业级应用开发最佳首选框架, null, 0, 0, 0
+2021-12-10 17:47:06.102 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 201, 200, 基础应用, 201
+2021-12-10 17:47:06.102 DEBUG com.zw.mapper.EbookMapper.selectByExample         :137  [32m124446786847903744[0;39m <==      Total: 5
+2021-12-10 17:47:06.103 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 202, 200, 框架应用, 202
+2021-12-10 17:47:06.103 INFO  com.zw.service.EbookService                       :52   [32m124446786847903744[0;39m 总行数：5
+2021-12-10 17:47:06.103 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 300, 0, Python, 300
+2021-12-10 17:47:06.103 INFO  com.zw.service.EbookService                       :53   [32m124446786847903744[0;39m 总页数：1
+2021-12-10 17:47:06.103 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 301, 300, 基础应用, 301
+2021-12-10 17:47:06.104 INFO  com.zw.aspect.LogAspect                           :101  [32m124446786847903744[0;39m 返回结果: {"content":{"list":[{"category1Id":200,"category2Id":202,"description":"零基础入门Java开发，企业级应用开发最佳首选框架","docCount":6,"id":1,"name":"Spring Boot 入门教程","viewCount":0,"voteCount":30},{"category1Id":100,"category2Id":101,"description":"零基础入门Vue开发，企业级应用开发最佳首选框架","docCount":0,"id":2,"name":"Vue 入门教程","viewCount":0,"voteCount":0},{"category1Id":300,"category2Id":301,"description":"零基础入门Python开发，企业级应用开发最佳首选框架","docCount":0,"id":3,"name":"Python 入门教程","viewCount":0,"voteCount":0},{"category1Id":400,"category2Id":401,"description":"零基础入门MySQL开发，企业级应用开发最佳首选框架","docCount":0,"id":4,"name":"MySQL 入门教程","viewCount":0,"voteCount":0},{"category1Id":400,"category2Id":402,"description":"零基础入门Oracle开发，企业级应用开发最佳首选框架","docCount":0,"id":5,"name":"Oracle 入门教程","viewCount":0,"voteCount":0}],"total":5},"success":true}
+2021-12-10 17:47:06.104 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 302, 300, 进阶方向应用, 302
+2021-12-10 17:47:06.104 INFO  com.zw.aspect.LogAspect                           :102  [32m124446786847903744[0;39m ------------- 结束 耗时：10 ms -------------
+2021-12-10 17:47:06.104 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 400, 0, 数据库, 400
+2021-12-10 17:47:06.105 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 401, 400, MySQL, 401
+2021-12-10 17:47:06.105 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 402, 400, 其他, 402
+2021-12-10 17:47:06.106 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 500, 0, 服务器, 500
+2021-12-10 17:47:06.107 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 501, 500, 开发工具, 501
+2021-12-10 17:47:06.108 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 502, 500, 热门服务端语言, 502
+2021-12-10 17:47:06.108 TRACE com.zw.mapper.CategoryMapper.selectByExample      :143  [32m124446786843709440[0;39m <==        Row: 122725855960109056, 0, 移动端开发, 600
+2021-12-10 17:47:06.109 DEBUG com.zw.mapper.CategoryMapper.selectByExample      :137  [32m124446786843709440[0;39m <==      Total: 17
+2021-12-10 17:47:06.110 INFO  com.zw.aspect.LogAspect                           :101  [32m124446786843709440[0;39m 返回结果: {"content":[{"id":122726123326017536,"name":"ios","parent":122725855960109060,"sort":1},{"id":100,"name":"前端开发","parent":0,"sort":100},{"id":101,"name":"vue","parent":100,"sort":101},{"id":102,"name":"Html & Css","parent":100,"sort":102},{"id":200,"name":"Java","parent":0,"sort":200},{"id":201,"name":"基础应用","parent":200,"sort":201},{"id":202,"name":"框架应用","parent":200,"sort":202},{"id":300,"name":"Python","parent":0,"sort":300},{"id":301,"name":"基础应用","parent":300,"sort":301},{"id":302,"name":"进阶方向应用","parent":300,"sort":302},{"id":400,"name":"数据库","parent":0,"sort":400},{"id":401,"name":"MySQL","parent":400,"sort":401},{"id":402,"name":"其他","parent":400,"sort":402},{"id":500,"name":"服务器","parent":0,"sort":500},{"id":501,"name":"开发工具","parent":500,"sort":501},{"id":502,"name":"热门服务端语言","parent":500,"sort":502},{"id":122725855960109056,"name":"移动端开发","parent":0,"sort":600}],"success":true}
+2021-12-10 17:47:06.110 INFO  com.zw.aspect.LogAspect                           :102  [32m124446786843709440[0;39m ------------- 结束 耗时：17 ms -------------
+2021-12-10 17:47:07.611 INFO  com.zw.aspect.LogAspect                           :62   [32m124446793210662912[0;39m ------------- 开始 -------------
+2021-12-10 17:47:07.611 INFO  com.zw.aspect.LogAspect                           :63   [32m124446793210662912[0;39m 请求地址: http://127.0.0.1:8880/doc/all/1 GET
+2021-12-10 17:47:07.611 INFO  com.zw.aspect.LogAspect                           :64   [32m124446793210662912[0;39m 类名方法: com.zw.controller.DocController.all
+2021-12-10 17:47:07.612 INFO  com.zw.aspect.LogAspect                           :65   [32m124446793210662912[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:07.612 INFO  com.zw.aspect.LogAspect                           :89   [32m124446793210662912[0;39m 请求参数: [1]
+2021-12-10 17:47:07.623 DEBUG com.zw.mapper.DocMapper.selectByExample           :137  [32m124446793210662912[0;39m ==>  Preparing: select id, ebook_id, parent, name, sort, view_count, vote_count from doc WHERE ( ebook_id = ? ) order by sort asc
+2021-12-10 17:47:07.624 DEBUG com.zw.mapper.DocMapper.selectByExample           :137  [32m124446793210662912[0;39m ==> Parameters: 1(Long)
+2021-12-10 17:47:07.625 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==    Columns: id, ebook_id, parent, name, sort, view_count, vote_count
+2021-12-10 17:47:07.626 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 122620387233239040, 1, 1, 第一章, 0, 1, 0
+2021-12-10 17:47:07.626 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 122632303733248000, 1, 2, 文档1.1.1, 0, 0, 0
+2021-12-10 17:47:07.626 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 122633329118941184, 1, 2, 文档1.1.2, 0, 0, 0
+2021-12-10 17:47:07.627 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 122633954258980864, 1, 0, 第四章, 0, 9, 2
+2021-12-10 17:47:07.627 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 122635355240402944, 1, 0, 第五章, 0, 2, 2
+2021-12-10 17:47:07.627 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 2, 1, 1, 文档1.1, 1, 1, 0
+2021-12-10 17:47:07.628 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 4, 1, 3, 文档2.1, 1, 3, 0
+2021-12-10 17:47:07.628 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 6, 1, 5, 文档2.2.1, 1, 0, 0
+2021-12-10 17:47:07.628 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 122620794974113792, 1, 0, 第二章, 1, 1, 1
+2021-12-10 17:47:07.629 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 122621192015319040, 1, 0, 第三章, 1, 2, 0
+2021-12-10 17:47:07.629 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 1, 1, 0, 文档1, 2, 1, 31
+2021-12-10 17:47:07.629 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 3, 1, 0, 文档2, 2, 4, 0
+2021-12-10 17:47:07.629 TRACE com.zw.mapper.DocMapper.selectByExample           :143  [32m124446793210662912[0;39m <==        Row: 5, 1, 3, 文档2.2, 2, 2, 2
+2021-12-10 17:47:07.630 DEBUG com.zw.mapper.DocMapper.selectByExample           :137  [32m124446793210662912[0;39m <==      Total: 13
+2021-12-10 17:47:07.638 INFO  com.zw.aspect.LogAspect                           :101  [32m124446793210662912[0;39m 返回结果: {"content":[{"ebookId":1,"id":122620387233239040,"name":"第一章","parent":1,"sort":0,"viewCount":1,"voteCount":0},{"ebookId":1,"id":122632303733248000,"name":"文档1.1.1","parent":2,"sort":0,"viewCount":0,"voteCount":0},{"ebookId":1,"id":122633329118941184,"name":"文档1.1.2","parent":2,"sort":0,"viewCount":0,"voteCount":0},{"ebookId":1,"id":122633954258980864,"name":"第四章","parent":0,"sort":0,"viewCount":9,"voteCount":2},{"ebookId":1,"id":122635355240402944,"name":"第五章","parent":0,"sort":0,"viewCount":2,"voteCount":2},{"ebookId":1,"id":2,"name":"文档1.1","parent":1,"sort":1,"viewCount":1,"voteCount":0},{"ebookId":1,"id":4,"name":"文档2.1","parent":3,"sort":1,"viewCount":3,"voteCount":0},{"ebookId":1,"id":6,"name":"文档2.2.1","parent":5,"sort":1,"viewCount":0,"voteCount":0},{"ebookId":1,"id":122620794974113792,"name":"第二章","parent":0,"sort":1,"viewCount":1,"voteCount":1},{"ebookId":1,"id":122621192015319040,"name":"第三章","parent":0,"sort":1,"viewCount":2,"voteCount":0},{"ebookId":1,"id":1,"name":"文档1","parent":0,"sort":2,"viewCount":1,"voteCount":31},{"ebookId":1,"id":3,"name":"文档2","parent":0,"sort":2,"viewCount":4,"voteCount":0},{"ebookId":1,"id":5,"name":"文档2.2","parent":3,"sort":2,"viewCount":2,"voteCount":2}],"success":true}
+2021-12-10 17:47:07.639 INFO  com.zw.aspect.LogAspect                           :102  [32m124446793210662912[0;39m ------------- 结束 耗时：28 ms -------------
+2021-12-10 17:47:07.647 INFO  com.zw.aspect.LogAspect                           :62   [32m124446793361657856[0;39m ------------- 开始 -------------
+2021-12-10 17:47:07.648 INFO  com.zw.aspect.LogAspect                           :63   [32m124446793361657856[0;39m 请求地址: http://127.0.0.1:8880/doc/find-content/122633954258980864 GET
+2021-12-10 17:47:07.648 INFO  com.zw.aspect.LogAspect                           :64   [32m124446793361657856[0;39m 类名方法: com.zw.controller.DocController.findContent
+2021-12-10 17:47:07.648 INFO  com.zw.aspect.LogAspect                           :65   [32m124446793361657856[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:07.648 INFO  com.zw.aspect.LogAspect                           :89   [32m124446793361657856[0;39m 请求参数: [122633954258980864]
+2021-12-10 17:47:07.649 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446793361657856[0;39m ==>  Preparing: select id , content from content where id = ?
+2021-12-10 17:47:07.649 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446793361657856[0;39m ==> Parameters: 122633954258980864(Long)
+2021-12-10 17:47:07.652 TRACE com.zw.mapper.ContentMapper.selectByPrimaryKey    :143  [32m124446793361657856[0;39m <==    Columns: id, content
+2021-12-10 17:47:07.652 TRACE com.zw.mapper.ContentMapper.selectByPrimaryKey    :143  [32m124446793361657856[0;39m <==        Row: 122633954258980864, <<BLOB>>
+2021-12-10 17:47:07.653 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446793361657856[0;39m <==      Total: 1
+2021-12-10 17:47:07.654 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446793361657856[0;39m ==>  Preparing: update doc set view_count = view_count + 1 where id = ?
+2021-12-10 17:47:07.655 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446793361657856[0;39m ==> Parameters: 122633954258980864(Long)
+2021-12-10 17:47:07.669 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446793361657856[0;39m <==    Updates: 1
+2021-12-10 17:47:07.670 INFO  com.zw.aspect.LogAspect                           :101  [32m124446793361657856[0;39m 返回结果: {"content":"","success":true}
+2021-12-10 17:47:07.670 INFO  com.zw.aspect.LogAspect                           :102  [32m124446793361657856[0;39m ------------- 结束 耗时：23 ms -------------
+2021-12-10 17:47:08.585 INFO  com.zw.aspect.LogAspect                           :62   [32m124446797295915008[0;39m ------------- 开始 -------------
+2021-12-10 17:47:08.585 INFO  com.zw.aspect.LogAspect                           :63   [32m124446797295915008[0;39m 请求地址: http://127.0.0.1:8880/doc/find-content/122620794974113792 GET
+2021-12-10 17:47:08.585 INFO  com.zw.aspect.LogAspect                           :64   [32m124446797295915008[0;39m 类名方法: com.zw.controller.DocController.findContent
+2021-12-10 17:47:08.585 INFO  com.zw.aspect.LogAspect                           :65   [32m124446797295915008[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:08.586 INFO  com.zw.aspect.LogAspect                           :89   [32m124446797295915008[0;39m 请求参数: [122620794974113792]
+2021-12-10 17:47:08.586 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446797295915008[0;39m ==>  Preparing: select id , content from content where id = ?
+2021-12-10 17:47:08.587 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446797295915008[0;39m ==> Parameters: 122620794974113792(Long)
+2021-12-10 17:47:08.588 TRACE com.zw.mapper.ContentMapper.selectByPrimaryKey    :143  [32m124446797295915008[0;39m <==    Columns: id, content
+2021-12-10 17:47:08.588 TRACE com.zw.mapper.ContentMapper.selectByPrimaryKey    :143  [32m124446797295915008[0;39m <==        Row: 122620794974113792, <<BLOB>>
+2021-12-10 17:47:08.589 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446797295915008[0;39m <==      Total: 1
+2021-12-10 17:47:08.589 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446797295915008[0;39m ==>  Preparing: update doc set view_count = view_count + 1 where id = ?
+2021-12-10 17:47:08.589 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446797295915008[0;39m ==> Parameters: 122620794974113792(Long)
+2021-12-10 17:47:08.603 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446797295915008[0;39m <==    Updates: 1
+2021-12-10 17:47:08.603 INFO  com.zw.aspect.LogAspect                           :101  [32m124446797295915008[0;39m 返回结果: {"content":"<p>测试</p>","success":true}
+2021-12-10 17:47:08.603 INFO  com.zw.aspect.LogAspect                           :102  [32m124446797295915008[0;39m ------------- 结束 耗时：18 ms -------------
+2021-12-10 17:47:09.926 INFO  com.zw.aspect.LogAspect                           :62   [32m124446802920476672[0;39m ------------- 开始 -------------
+2021-12-10 17:47:09.926 INFO  com.zw.aspect.LogAspect                           :63   [32m124446802920476672[0;39m 请求地址: http://127.0.0.1:8880/doc/vote/122620794974113792 GET
+2021-12-10 17:47:09.927 INFO  com.zw.aspect.LogAspect                           :64   [32m124446802920476672[0;39m 类名方法: com.zw.controller.DocController.vote
+2021-12-10 17:47:09.927 INFO  com.zw.aspect.LogAspect                           :65   [32m124446802920476672[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:09.927 INFO  com.zw.aspect.LogAspect                           :89   [32m124446802920476672[0;39m 请求参数: [122620794974113792]
+2021-12-10 17:47:10.645 INFO  com.zw.util.RedisUtil                             :36   [32m124446802920476672[0;39m key不存在，放入：DOC_VOTE_122620794974113792_127.0.0.1，过期 86400 秒
+2021-12-10 17:47:10.651 DEBUG com.zw.mapper.DocMapperCust.increaseVoteCount     :137  [32m124446802920476672[0;39m ==>  Preparing: update doc set vote_count = vote_count + 1 where id = ?
+2021-12-10 17:47:10.651 DEBUG com.zw.mapper.DocMapperCust.increaseVoteCount     :137  [32m124446802920476672[0;39m ==> Parameters: 122620794974113792(Long)
+2021-12-10 17:47:10.664 DEBUG com.zw.mapper.DocMapperCust.increaseVoteCount     :137  [32m124446802920476672[0;39m <==    Updates: 1
+2021-12-10 17:47:10.665 DEBUG com.zw.mapper.DocMapper.selectByPrimaryKey        :137  [32m124446802920476672[0;39m ==>  Preparing: select id, ebook_id, parent, name, sort, view_count, vote_count from doc where id = ?
+2021-12-10 17:47:10.666 DEBUG com.zw.mapper.DocMapper.selectByPrimaryKey        :137  [32m124446802920476672[0;39m ==> Parameters: 122620794974113792(Long)
+2021-12-10 17:47:10.667 TRACE com.zw.mapper.DocMapper.selectByPrimaryKey        :143  [32m124446802920476672[0;39m <==    Columns: id, ebook_id, parent, name, sort, view_count, vote_count
+2021-12-10 17:47:10.667 TRACE com.zw.mapper.DocMapper.selectByPrimaryKey        :143  [32m124446802920476672[0;39m <==        Row: 122620794974113792, 1, 0, 第二章, 1, 2, 2
+2021-12-10 17:47:10.667 DEBUG com.zw.mapper.DocMapper.selectByPrimaryKey        :137  [32m124446802920476672[0;39m <==      Total: 1
+2021-12-10 17:47:10.669 INFO  com.zw.websocket.WebSocketServer                  :71   [32m124446802920476672[0;39m 推送消息：Y5ReR0tPi9，内容：【第二章】被点赞
+2021-12-10 17:47:10.669 INFO  com.zw.aspect.LogAspect                           :101  [32m124446802920476672[0;39m 返回结果: {"success":true}
+2021-12-10 17:47:10.669 INFO  com.zw.aspect.LogAspect                           :102  [32m124446802920476672[0;39m ------------- 结束 耗时：743 ms -------------
+2021-12-10 17:47:11.568 INFO  com.zw.aspect.LogAspect                           :62   [32m124446809807523840[0;39m ------------- 开始 -------------
+2021-12-10 17:47:11.568 INFO  com.zw.aspect.LogAspect                           :63   [32m124446809807523840[0;39m 请求地址: http://127.0.0.1:8880/doc/find-content/122621192015319040 GET
+2021-12-10 17:47:11.568 INFO  com.zw.aspect.LogAspect                           :64   [32m124446809807523840[0;39m 类名方法: com.zw.controller.DocController.findContent
+2021-12-10 17:47:11.568 INFO  com.zw.aspect.LogAspect                           :65   [32m124446809807523840[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:11.568 INFO  com.zw.aspect.LogAspect                           :89   [32m124446809807523840[0;39m 请求参数: [122621192015319040]
+2021-12-10 17:47:11.569 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446809807523840[0;39m ==>  Preparing: select id , content from content where id = ?
+2021-12-10 17:47:11.570 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446809807523840[0;39m ==> Parameters: 122621192015319040(Long)
+2021-12-10 17:47:11.571 TRACE com.zw.mapper.ContentMapper.selectByPrimaryKey    :143  [32m124446809807523840[0;39m <==    Columns: id, content
+2021-12-10 17:47:11.572 TRACE com.zw.mapper.ContentMapper.selectByPrimaryKey    :143  [32m124446809807523840[0;39m <==        Row: 122621192015319040, <<BLOB>>
+2021-12-10 17:47:11.572 DEBUG com.zw.mapper.ContentMapper.selectByPrimaryKey    :137  [32m124446809807523840[0;39m <==      Total: 1
+2021-12-10 17:47:11.572 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446809807523840[0;39m ==>  Preparing: update doc set view_count = view_count + 1 where id = ?
+2021-12-10 17:47:11.573 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446809807523840[0;39m ==> Parameters: 122621192015319040(Long)
+2021-12-10 17:47:11.576 DEBUG com.zw.mapper.DocMapperCust.increaseViewCount     :137  [32m124446809807523840[0;39m <==    Updates: 1
+2021-12-10 17:47:11.577 INFO  com.zw.aspect.LogAspect                           :101  [32m124446809807523840[0;39m 返回结果: {"content":"<p>test3</p>","success":true}
+2021-12-10 17:47:11.577 INFO  com.zw.aspect.LogAspect                           :102  [32m124446809807523840[0;39m ------------- 结束 耗时：9 ms -------------
+2021-12-10 17:47:13.880 INFO  com.zw.aspect.LogAspect                           :62   [32m124446819504754688[0;39m ------------- 开始 -------------
+2021-12-10 17:47:13.881 INFO  com.zw.aspect.LogAspect                           :63   [32m124446819504754688[0;39m 请求地址: http://127.0.0.1:8880/doc/vote/122621192015319040 GET
+2021-12-10 17:47:13.881 INFO  com.zw.aspect.LogAspect                           :64   [32m124446819504754688[0;39m 类名方法: com.zw.controller.DocController.vote
+2021-12-10 17:47:13.881 INFO  com.zw.aspect.LogAspect                           :65   [32m124446819504754688[0;39m 远程地址: 127.0.0.1
+2021-12-10 17:47:13.882 INFO  com.zw.aspect.LogAspect                           :89   [32m124446819504754688[0;39m 请求参数: [122621192015319040]
+2021-12-10 17:47:13.883 INFO  com.zw.util.RedisUtil                             :36   [32m124446819504754688[0;39m key不存在，放入：DOC_VOTE_122621192015319040_127.0.0.1，过期 86400 秒
+2021-12-10 17:47:13.885 DEBUG com.zw.mapper.DocMapperCust.increaseVoteCount     :137  [32m124446819504754688[0;39m ==>  Preparing: update doc set vote_count = vote_count + 1 where id = ?
+2021-12-10 17:47:13.886 DEBUG com.zw.mapper.DocMapperCust.increaseVoteCount     :137  [32m124446819504754688[0;39m ==> Parameters: 122621192015319040(Long)
+2021-12-10 17:47:13.899 DEBUG com.zw.mapper.DocMapperCust.increaseVoteCount     :137  [32m124446819504754688[0;39m <==    Updates: 1
+2021-12-10 17:47:13.900 DEBUG com.zw.mapper.DocMapper.selectByPrimaryKey        :137  [32m124446819504754688[0;39m ==>  Preparing: select id, ebook_id, parent, name, sort, view_count, vote_count from doc where id = ?
+2021-12-10 17:47:13.901 DEBUG com.zw.mapper.DocMapper.selectByPrimaryKey        :137  [32m124446819504754688[0;39m ==> Parameters: 122621192015319040(Long)
+2021-12-10 17:47:13.902 TRACE com.zw.mapper.DocMapper.selectByPrimaryKey        :143  [32m124446819504754688[0;39m <==    Columns: id, ebook_id, parent, name, sort, view_count, vote_count
+2021-12-10 17:47:13.902 TRACE com.zw.mapper.DocMapper.selectByPrimaryKey        :143  [32m124446819504754688[0;39m <==        Row: 122621192015319040, 1, 0, 第三章, 1, 3, 1
+2021-12-10 17:47:13.902 DEBUG com.zw.mapper.DocMapper.selectByPrimaryKey        :137  [32m124446819504754688[0;39m <==      Total: 1
+2021-12-10 17:47:13.903 INFO  com.zw.websocket.WebSocketServer                  :71   [32m124446819504754688[0;39m 推送消息：Y5ReR0tPi9，内容：【第三章】被点赞
+2021-12-10 17:47:13.904 INFO  com.zw.aspect.LogAspect                           :101  [32m124446819504754688[0;39m 返回结果: {"success":true}
+2021-12-10 17:47:13.904 INFO  com.zw.aspect.LogAspect                           :102  [32m124446819504754688[0;39m ------------- 结束 耗时：24 ms -------------
+2021-12-10 17:47:15.820 INFO  com.zw.websocket.WebSocketServer                  :41   [32m                  [0;39m 连接关闭，token：Y5ReR0tPi9，session id：1！当前连接数：0
+2021-12-10 17:58:10.872 INFO  com.zw.wiki.WikiApplication                       :55   [32m                  [0;39m Starting WikiApplication using Java 1.8.0_201 on DESKTOP-VDLPH90 with PID 78020 (D:\桌面\c盘移到d盘\新建文件夹\zw\target\classes started by Ja in D:\桌面\c盘移到d盘\新建文件夹\zw)
+2021-12-10 17:58:10.874 INFO  org.hibernate.validator.internal.util.Version     :21   [32m                  [0;39m HV000001: Hibernate Validator 6.2.0.Final
+2021-12-10 17:58:10.875 INFO  com.zw.wiki.WikiApplication                       :635  [32m                  [0;39m No active profile set, falling back to default profiles: default
+2021-12-10 17:58:12.092 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :262  [32m                  [0;39m Multiple Spring Data modules found, entering strict repository configuration mode!
+2021-12-10 17:58:12.094 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :132  [32m                  [0;39m Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2021-12-10 17:58:12.114 INFO  o.s.d.r.config.RepositoryConfigurationDelegate    :201  [32m                  [0;39m Finished Spring Data repository scanning in 5 ms. Found 0 Redis repository interfaces.
+2021-12-10 17:58:12.714 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :108  [32m                  [0;39m Tomcat initialized with port(s): 8880 (http)
+2021-12-10 17:58:12.721 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Initializing ProtocolHandler ["http-nio-8880"]
+2021-12-10 17:58:12.722 INFO  org.apache.catalina.core.StandardService          :173  [32m                  [0;39m Starting service [Tomcat]
+2021-12-10 17:58:12.722 INFO  org.apache.catalina.core.StandardEngine           :173  [32m                  [0;39m Starting Servlet engine: [Apache Tomcat/9.0.55]
+2021-12-10 17:58:12.724 WARN  org.apache.catalina.core.AprLifecycleListener     :173  [32m                  [0;39m This listener must only be nested within Server elements, but is in [TomcatEmbeddedContext].
+2021-12-10 17:58:12.725 INFO  org.apache.catalina.core.AprLifecycleListener     :173  [32m                  [0;39m Loaded Apache Tomcat Native library [1.2.30] using APR version [1.7.0].
+2021-12-10 17:58:12.725 INFO  org.apache.catalina.core.AprLifecycleListener     :173  [32m                  [0;39m APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true], UDS [true].
+2021-12-10 17:58:12.726 INFO  org.apache.catalina.core.AprLifecycleListener     :173  [32m                  [0;39m APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2021-12-10 17:58:12.730 INFO  org.apache.catalina.core.AprLifecycleListener     :173  [32m                  [0;39m OpenSSL successfully initialized [OpenSSL 1.1.1k  25 Mar 2021]
+2021-12-10 17:58:12.822 INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] :173  [32m                  [0;39m Initializing Spring embedded WebApplicationContext
+2021-12-10 17:58:12.822 INFO  o.s.b.w.s.c.ServletWebServerApplicationContext    :290  [32m                  [0;39m Root WebApplicationContext: initialization completed in 1911 ms
+2021-12-10 17:58:14.157 INFO  org.apache.coyote.http11.Http11NioProtocol        :173  [32m                  [0;39m Starting ProtocolHandler ["http-nio-8880"]
+2021-12-10 17:58:14.171 INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer      :220  [32m                  [0;39m Tomcat started on port(s): 8880 (http) with context path ''
+2021-12-10 17:58:14.180 INFO  com.zw.wiki.WikiApplication                       :61   [32m                  [0;39m Started WikiApplication in 3.766 seconds (JVM running for 4.636)
