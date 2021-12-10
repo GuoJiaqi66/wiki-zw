@@ -31,14 +31,11 @@
       
       </a-menu>
     </a-layout-sider>
-
-
+  
     <a-layout-content
             :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
     >
-
-
-
+      
       <a-list item-layout="vertical" size="large" :grid="{ gutter: 20, column: 3 }" :pagination="pagination" :data-source="ebooks">
         <template #renderItem="{ item }">
           <a-list-item key="item.name">
@@ -69,11 +66,6 @@
           </a-list-item>
         </template>
       </a-list>
-
-
-
-
-
     </a-layout-content>
   </a-layout>
 </template>
@@ -161,7 +153,11 @@ export default defineComponent({
       handleQueryEbook,
         handleClick,
         level1,
-        handle
+        handle,
+        
+        
+        
+        publicPath: process.env.BASE_URL,
     };
   },
 });
