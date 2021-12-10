@@ -12,6 +12,11 @@
           <span>欢迎</span>
         </a-menu-item>
   
+        <a-menu-item key="all">
+          <MailOutlined /> <!-- 图标 -->
+          <span @click="handle">全部</span>
+        </a-menu-item>
+  
         <a-sub-menu v-for="item in level1" :key="item.id" > <!--:disabled="true"-->
           <template v-slot:title>
             <span><user-outlined />{{item.name}}</span>
@@ -114,7 +119,7 @@ export default defineComponent({
         })
     }
     
-    let category2Id:number
+    let category2Id:any
 
     const handleQueryEbook = () => {
       axios.get("/ebook/list", {
@@ -126,9 +131,20 @@ export default defineComponent({
       }).then((response) => {
         const data = response.data;
         ebooks.value = data.content.list;
-        // ebooks1.books = data.content;
       });
     };
+    
+    const handle = () => {
+        axios.get("/ebook/list", {
+            params: {
+                page: 1,
+                size: 1000
+            }
+        }).then(resp => {
+            const data = resp.data;
+            ebooks.value = data.content.list;
+        })
+    }
 
     onMounted(() => {
       handleQueryEbook()
@@ -144,8 +160,19 @@ export default defineComponent({
         openKeys,
       handleQueryEbook,
         handleClick,
-        level1
+        level1,
+        handle
     };
   },
 });
 </script>
+
+<style scoped>
+  .ant-avatar {
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 8%;
+    margin: 5px 0;
+  }
+</style>

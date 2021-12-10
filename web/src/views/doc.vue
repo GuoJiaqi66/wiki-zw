@@ -1,7 +1,6 @@
 <template>
   <a-layout class="layout">
     <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
-      <h3>点赞bug：传进去的id与数据库id不匹配</h3>
       <a-row type="flex" justify="space-around">
         <a-col :span="6">
           <a-tree
@@ -175,5 +174,10 @@
   .vote-div {
     padding: 15px;
     text-align: center;
+  }
+  
+  .wangeditor img {
+    max-width: 100%;
+    height: auto;
   }
 </style>
