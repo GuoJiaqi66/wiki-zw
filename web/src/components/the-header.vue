@@ -1,10 +1,11 @@
 <template>
     <a-layout-header class="header">
         <div class="logo" >
-          郭佳绮 wiki
+          ZW &nbsp; wiki
         </div>
+      
+      <!--v-model:selectedKeys="selectedKeys1"-->
         <a-menu
-                v-model:selectedKeys="selectedKeys1"
                 theme="dark"
                 mode="horizontal"
                 :style="{ lineHeight: '64px' }"
@@ -24,10 +25,6 @@
             <a-menu-item key="/admin/user" :style="user.id? {} : {display:'none'}">
                   <router-link to="/admin/user">用户管理</router-link>
             </a-menu-item>
-  
-          <a-menu-item key="/about">
-            <router-link to="/about">关于</router-link>
-          </a-menu-item>
           
           <div class="position">
             <a-popconfirm
@@ -48,22 +45,25 @@
             </a>
           </div>
         </a-menu>
-    </a-layout-header>
   
-  <a-modal
-    title="登录"
-    v-model:visible="loginModalVisible"
-    @ok="login"
-  >
-    <a-form :model="loginUser" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
-      <a-form-item label="登录名">
-        <a-input v-model:value="loginUser.loginName" />
-      </a-form-item>
-      <a-form-item label="密码">
-        <a-input v-model:value="loginUser.password" type="password" />
-      </a-form-item>
-    </a-form>
-  </a-modal>
+      <a-modal
+        title="登录"
+        v-model:visible="loginModalVisible"
+        @ok="login"
+      >
+        <a-form :model="loginUser" :label-col="{ span: 6 }" :wrapper-col="{ span: 18 }">
+          <a-form-item label="登录名">
+            <a-input v-model:value="loginUser.loginName" />
+          </a-form-item>
+          <a-form-item label="密码">
+            <a-input v-model:value="loginUser.password" type="password" />
+          </a-form-item>
+        </a-form>
+      </a-modal>
+    </a-layout-header>
+  <div style="color: red; display: inline-block; float: left; position: relative; left: 1200px; margin-top: -40px; padding-bottom: 30px">
+    <router-link to="/about">关于</router-link>
+  </div>
 </template>
 
 <script lang="ts">

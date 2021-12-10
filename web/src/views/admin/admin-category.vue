@@ -1,7 +1,6 @@
 <template>
     <a-layout>
         <a-layout-content :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }">
-            <h3>一些bug：删除接口、修改接口：数据库的id与spring boot 拿到的id不行同，即只要是从数据库拿Long类型数据，会导致出现数据偏差(错误)</h3>
             <p>
                 <a-form layout="inline" :model="param">
                     <a-form-item>
