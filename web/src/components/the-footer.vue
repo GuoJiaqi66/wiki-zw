@@ -1,6 +1,6 @@
 <template>
     <a-layout-footer style="text-align: center">
-        Ant Design ©2018 Created by Ant UED
+      备案号：<a href="http://beian.miit.gov.cn">陕ICP备2021016268号</a>
     </a-layout-footer>
 
 </template>
@@ -27,21 +27,21 @@
                     description: event.data,
                 });
             };
-            const onError = () => {
+            /*const onError = () => {
                 console.log('WebSocket连接错误，状态码：', websocket.readyState)
             };
             const onClose = () => {
                 console.log('WebSocket连接关闭，状态码：', websocket.readyState)
-            };
+            };*/
             const initWebSocket = () => {
                 // 连接成功
                 websocket.onopen = onOpen;
                 // 收到消息的回调
                 websocket.onmessage = onMessage;
                 // 连接错误
-                websocket.onerror = onError;
+                //websocket.onerror = onError;
                 // 连接关闭的回调
-                websocket.onclose = onClose;
+                //websocket.onclose = onClose;
             };
 
             onMounted(() => {
